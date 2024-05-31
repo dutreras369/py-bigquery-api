@@ -27,11 +27,15 @@ py-bigquery-api/
 │   ├── models/
 │   │   ├── __init__.py
 │   │   └── data_model.py
+│   ├── static/
+│   │   ├── styles.css
 │   ├── templates/
 │   │   ├── index.html
 │   │   ├── success.html
 │   │   └── data_view.html
 │   └── __init__.py
+├── credentials/
+│   └── db-bigquery-425013-ab2c5a026bd8.json
 ├── static/
 │   └── styles.css
 ├── config.py

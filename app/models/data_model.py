@@ -1,13 +1,16 @@
+import os
 from google.cloud import bigquery
-from google.auth import default
-from config import Config
+from google.auth import credentials
+from google.oauth2 import service_account
 import pandas as pd
+from config import CREDENTIALS_PATH, Config
 
 class DataModel:
     def __init__(self):
-        credentials, project_id = default()
-        self.client = bigquery.Client(credentials=credentials, project=Config.BIGQUERY_PROJECT_ID)
-        self.table_id = f"{Config.BIGQUERY_PROJECT_ID}.tu_dataset.tu_tabla"  # Reemplazar con tu dataset y tabla de BigQuery
+        credentials_path = CREDENTIALS_PATH
+        self.credentials = service_account.Credentials.from_service_account_file(credentials_path)
+        self.client = bigquery.Client(credentials=self.credentials, project=Config.BIGQUERY_PROJECT_ID)
+        self.table_id = f"{Config.BIGQUERY_PROJECT_ID}.test_dataset.models" 
 
     def insert_data(self, data):
         df = pd.DataFrame(data)

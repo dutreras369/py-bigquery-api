@@ -7,9 +7,11 @@
     <title>API Integración de Datos</title>
 </head>
 <body>
-    <h1>API Integración de Datos</h1>
-    <form action="{{ url_for('api.fetch_data') }}" method="get">
-        <button type="submit">Obtener Datos</button>
-    </form>
+    <div class="container">
+        <h1>API Integración de Datos</h1>
+        <form action="{{ url_for('api.fetch_data') }}" method="get">
+            <button type="submit">Obtener Datos</button>
+        </form>
+    </div>
 </body>
 </html>

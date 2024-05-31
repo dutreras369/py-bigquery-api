@@ -5,6 +5,10 @@ from app.models import DataModel
 
 logger = logging.getLogger(__name__)
 
+@view_bp.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
 @view_bp.route('/view_data', methods=['GET'])
 def view_data():
     try:
