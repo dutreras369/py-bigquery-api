@@ -1,23 +1,34 @@
-from flask import Blueprint, render_template, redirect, url_for, current_app
-from app.models.data_model import DataModel
+from flask import redirect, url_for
+from app.controllers import api_bp
 import requests
+import pandas as pd
+from google.cloud import bigquery
+from google.auth import default
+from app.config import Config
 
-api_blueprint = Blueprint('api', __name__)
+credentials, project_id = default()
+client = bigquery.Client(credentials=credentials, project=project_id)
 
-@api_blueprint.route('/fetch_data', methods=['GET'])
+@api_bp.route('/')
+def index():
+    return redirect(url_for('api.fetch_data'))
+
+@api_bp.route('/fetch_data', methods=['GET'])
 def fetch_data():
     url = 'https://k51qryqov3.execute-api.ap-southeast-2.amazonaws.com/prod/makes/ckl2phsabijs71623vk0?modelsPage=1'
     response = requests.get(url)
     data = response.json()
 
     if 'models' in data:
-        model_data = data['models']
-        model = DataModel()
-        model.insert_data(model_data)
+        df = pd.DataFrame(data['models'])
+        table_id = f"{Config.BIGQUERY_PROJECT_ID}.tu_dataset.tu_tabla"
+        job_config = bigquery.LoadJobConfig(schema=df.dtypes.to_dict())
+        job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
+        job.result()
         return redirect(url_for('api.success'))
     else:
         return "No se encontró el atributo 'models' en la respuesta de la API."
 
-@api_blueprint.route('/success', methods=['GET'])
+@api_bp.route('/success')
 def success():
-    return render_template('success.html')
+    return "Datos insertados en BigQuery satisfactoriamente."

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Vista de Datos</title>
+</head>
+<body>
+    <h1>Datos Obtenidos de BigQuery</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Año</th>
+                <!-- Agrega más columnas según la estructura de tus datos -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.year }}</td>
+                    <!-- Ajusta las propiedades según los atributos de tus datos -->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
