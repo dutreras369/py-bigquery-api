@@ -1,14 +1,10 @@
-from flask import render_template, redirect, url_for, jsonify
+from flask import render_template, redirect, url_for
 from app.controllers import api_bp
 import requests
-import pandas as pd
-from google.cloud import bigquery
-from google.auth import default
-from app.config import Config
+from app.models import DataModel
 import logging
 
-credentials, project_id = default()
-client = bigquery.Client(credentials=credentials, project=project_id)
+data_model = DataModel()
 
 @api_bp.route('/')
 def index():
@@ -23,13 +19,12 @@ def fetch_data():
         data = response.json()
 
         if 'models' in data:
-            df = pd.DataFrame(data['models'])
-            table_id = f"{Config.BIGQUERY_PROJECT_ID}.tu_dataset.tu_tabla"
-            job_config = bigquery.LoadJobConfig(schema=df.dtypes.to_dict())
-            job = client.load_table_from_dataframe(df, table_id, job_config=job_config)
-            job.result()
-            logging.info("Datos cargados en BigQuery correctamente.")
-            return redirect(url_for('api.success'))
+            if data_model.insert_data(data['models']):
+                logging.info("Datos insertados en BigQuery correctamente.")
+                return redirect(url_for('api.success'))
+            else:
+                logging.error("Error al insertar datos en BigQuery.")
+                return "Error al insertar datos en BigQuery.", 500
         else:
             logging.error("No se encontró el atributo 'models' en la respuesta de la API.")
             return "No se encontró el atributo 'models' en la respuesta de la API.", 400
