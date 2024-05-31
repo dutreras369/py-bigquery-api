@@ -16,31 +16,32 @@ Este proyecto utiliza Flask en un patrón Modelo-Vista-Controlador (MVC) para co
 
 2. Configura las credenciales de BigQuery en tu entorno para que la aplicación pueda conectarse correctamente.
 
-## Estructura de Archivos
+### Descripción de Carpetas y Archivos
 
-py-bigquery-api/
-├── app/
-│   ├── controllers/
-│   │   ├── __init__.py
-│   │   ├── api_controller.py
-│   │   └── view_controller.py
-│   ├── models/
-│   │   ├── __init__.py
-│   │   └── data_model.py
-│   ├── static/
-│   │   ├── styles.css
-│   ├── templates/
-│   │   ├── index.html
-│   │   ├── success.html
-│   │   └── data_view.html
-│   └── __init__.py
-├── credentials/
-│   └── db-bigquery-425013-ab2c5a026bd8.json
-├── static/
-│   └── styles.css
-├── config.py
-├── run.py
-└── README.md
+- `py-bigquery-api/`: Directorio principal del proyecto.
+  - `app/`: Directorio que contiene la lógica de la aplicación.
+    - `controllers/`: Controladores de la aplicación.
+      - `__init__.py`
+      - `api_controller.py`: Controlador para la API.
+      - `view_controller.py`: Controlador para las vistas.
+    - `models/`: Modelos de datos de la aplicación.
+      - `__init__.py`
+      - `data_model.py`: Modelo de datos principal.
+    - `static/`: Archivos estáticos como CSS, JavaScript, etc.
+      - `styles.css`: Archivo de estilos CSS.
+    - `templates/`: Plantillas HTML para las vistas.
+      - `index.html`: Página de inicio.
+      - `success.html`: Página de éxito.
+      - `data_view.html`: Vista de datos.
+    - `__init__.py`: Archivo de inicialización del paquete `app`.
+  - `credentials/`: Carpeta que contiene las credenciales de la base de datos BigQuery.
+    - `db-bigquery-425013-ab2c5a026bd8.json`: Archivo de credenciales.
+  - `static/`: Otros archivos estáticos.
+    - `styles.css`: Otro archivo de estilos CSS.
+  - `config.py`: Archivo de configuración de la aplicación.
+  - `run.py`: Archivo principal para ejecutar la aplicación.
+  - `README.md`: Este archivo que estás leyendo ahora mismo.
+
 
 ## Uso
 
