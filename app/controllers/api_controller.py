@@ -1,4 +1,4 @@
-from flask import redirect, url_for
+from flask import render_template, redirect, url_for
 from app.controllers import api_bp
 import requests
 import pandas as pd
@@ -11,7 +11,7 @@ client = bigquery.Client(credentials=credentials, project=project_id)
 
 @api_bp.route('/')
 def index():
-    return redirect(url_for('api.fetch_data'))
+    return render_template('index.html')
 
 @api_bp.route('/fetch_data', methods=['GET'])
 def fetch_data():
@@ -31,4 +31,4 @@ def fetch_data():
 
 @api_bp.route('/success')
 def success():
-    return "Datos insertados en BigQuery satisfactoriamente."
+    return render_template('success.html')

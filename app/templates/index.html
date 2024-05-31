@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>API Integracion de Datos</title>
+    <title>API Integración de Datos</title>
 </head>
 <body>
-    <h1>API Integracion de Datos</h1>
-    <form action="/api/fetch_data" method="get">
+    <h1>API Integración de Datos</h1>
+    <form action="{{ url_for('api.fetch_data') }}" method="get">
         <button type="submit">Obtener Datos</button>
     </form>
 </body>
