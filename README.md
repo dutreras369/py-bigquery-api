@@ -41,6 +41,8 @@ Este proyecto utiliza Flask en un patrón Modelo-Vista-Controlador (MVC) para co
   - `config.py`
   - `run.py`
   - `README.md`
+  - `dags/`
+    - `etl_dag.py`
 
 ## Uso
 
@@ -52,6 +54,16 @@ Este proyecto utiliza Flask en un patrón Modelo-Vista-Controlador (MVC) para co
 3. Abre un navegador y ve a `http://localhost:5000` para acceder a la interfaz web.
 4. Desde la interfaz, puedes realizar la operación de conexión a la API, validación de datos y posterior inserción en BigQuery.
 5. También puedes acceder a la vista de datos en `http://localhost:5000/view_data` para visualizar la información obtenida.
+
+## Implementación de Apache Airflow
+
+Para ejecutar el proceso de integración de datos todos los días a la 1 am de la madrugada de Chile, se ha implementado un DAG en Apache Airflow. El archivo `etl_dag.py` dentro de la carpeta `dags/` define las tareas necesarias para esta programación.
+
+### Estructura del DAG
+
+El DAG está configurado para ejecutar el proceso de integración de datos diariamente a la 1 am de la madrugada de Chile. Las tareas incluyen la conexión a la API, la validación de los datos y la inserción en BigQuery.
+
+El DAG también se encarga de registrar las métricas y los logs de la ejecución para su seguimiento y análisis.
 
 ## Contribuciones
 
