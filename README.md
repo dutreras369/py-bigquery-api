@@ -7,7 +7,7 @@ Este proyecto utiliza Flask en un patrón Modelo-Vista-Controlador (MVC) para co
 1. Asegúrate de tener Python instalado en tu sistema. Puedes descargarlo desde [python.org](https://www.python.org/downloads/).
 2. Instala las bibliotecas necesarias utilizando pip:
     ```bash
-    pip install Flask requests pandas google-cloud-bigquery
+    pip install Flask requests pandas google-cloud-bigquery pyarrow db-dtypes
     ```
 
 ## Configuración

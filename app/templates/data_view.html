@@ -7,24 +7,43 @@
     <title>Vista de Datos</title>
 </head>
 <body>
-    <h1>Datos Obtenidos de BigQuery</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Año</th>
-                <!-- Agrega más columnas según la estructura de tus datos -->
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in data %}
+    <div class="container-table">
+        <h1>Datos Obtenidos de BigQuery</h1>
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ item.name }}</td>
-                    <td>{{ item.year }}</td>
-                    <!-- Ajusta las propiedades según los atributos de tus datos -->
+                    <th>id</th>
+                    <th>name</th>
+                    <th>image</th>
+                    <th>make</th>
+                    <th>makeId</th>
+                    <th>makeImage</th>
+                    <th>votes</th>
+                    <th>rank</th>
+                    <th>engineVol</th>
+                    <th>comments</th>
+                    <th>totalComments</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.image }}</td>
+                        <td>{{ item.make }}</td>
+                        <td>{{ item.makeId }}</td>
+                        <td>{{ item.makeImage }}</td>
+                        <td>{{ item.votes }}</td>
+                        <td>{{ item.rank }}</td>
+                        <td>{{ item.engineVol }}</td>
+                        <td>{{ item.comments }}</td>
+                        <td>{{ item.totalComments }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+   
 </body>
 </html>

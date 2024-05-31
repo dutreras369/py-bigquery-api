@@ -13,9 +13,10 @@ def fetch_data():
         response = requests.get(url)
         response.raise_for_status() 
         data = response.json()
-
+        models_data = data['models']['models']
+        
         if 'models' in data:
-            if data_model.insert_data(data['models']):
+            if data_model.insert_data(models_data):
                 logging.info("Datos insertados en BigQuery correctamente.")
                 return redirect(url_for('api.success'))
             else:
