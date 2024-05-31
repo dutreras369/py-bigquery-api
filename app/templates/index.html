@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Big Query Api</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>API Data Fetch</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido a Python Big Query Api</h1>
-        <p>Esta es una página de inicio básica.</p>
-    </div>
+    <h1>API Data Fetch</h1>
+    <form action="/api/fetch_data" method="get">
+        <button type="submit">Fetch Data</button>
+    </form>
 </body>
 </html>

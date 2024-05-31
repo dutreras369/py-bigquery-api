@@ -1,5 +1,0 @@
-Flask
-requests
-pandas
-google-cloud-bigquery
-google-auth
